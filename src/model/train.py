@@ -39,14 +39,14 @@ def split_data(df, test_size=0.2):
     X = df.drop("Diabetic", axis=1) 
     y = df["Diabetic"] 
     X_train, X_test, y_train, y_test = train_test_split(X, y,
-                                                         test_size=test_size) 
+    test_size=test_size) 
     return X_train, X_test, y_train, y_test 
 
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test): 
     # train model 
-    LogisticRegression(C=1 / reg_rate, solver="liblinear").fit(X_train,
-                                                                y_train) 
+    LogisticRegression(C=1 / reg_rate, solver="liblinear").fit(X_train
+    ,y_train) 
 
 
 def parse_args(): 
@@ -76,8 +76,7 @@ if __name__ == "__main__":
  
     # run main function 
     main(args) 
- 
- 
+  
     # add space in logs 
     print("*" * 60) 
     print("\n\n") 
