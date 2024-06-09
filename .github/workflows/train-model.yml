@@ -1,8 +1,7 @@
 name: Train Model
 
 on:
-  pull_request_target:
-    types: [labeled]
+  workflow_dispatch:
 
 env:
   workspace-name: aml-ws-mlops
