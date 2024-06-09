@@ -1,40 +1,40 @@
 on:
-    workflow_dispatch:
-   
-  permissions:
-    id-token: write
-    contents: read
-   
-  env:
-    AZURE_WEBAPP_NAME: mlflow-appservice # set this to your web application's name
-    AZURE_WEBAPP_PACKAGE_PATH: 'src/web/myapp' # set this to the path to your web app project, defaults to the repository root
-   
-  jobs:
-    build:
-      environment:
-        name: 'prod'
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-   
-        - uses: azure/login@v1
-          with:
-            client-id: ${{ secrets.AZURE_CLIENT_ID }}
-            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-   
-        - name: Set up Python 3.x
-          uses: actions/setup-python@v4
-          with:
-            python-version: 3.x
-        - name: Install dependencies
-          run: |
-            pip install -r src/web/myapp/requirements.txt
-        - name: Deploy App
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: ${{ env.AZURE_WEBAPP_NAME }}
-            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        - name: logout
-          run: |
-            az logout
+  workflow_dispatch:
+  
+permissions:
+  id-token: write
+  contents: read
+  
+env:
+  AZURE_WEBAPP_NAME: mlops-skaroti-appservice # set this to your web application's name
+  AZURE_WEBAPP_PACKAGE_PATH: 'src/web/myapp' # set this to the path to your web app project, defaults to the repository root
+  
+jobs:
+  build:
+    environment:
+      name: 'prod'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+  
+      - uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: |
+          pip install -r src/web/myapp/requirements.txt
+      - name: Deploy App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: logout
+        run: |
+          az logout
