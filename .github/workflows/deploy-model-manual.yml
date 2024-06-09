@@ -14,7 +14,8 @@ permissions:
   id-token: write
   contents: read
  
-jobs: 
+jobs:
+
   deploy-model:
     name: Deploy Model
     if: github.event.label.name == 'deploy-model'
