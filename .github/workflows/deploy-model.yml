@@ -8,7 +8,7 @@ env:
   workspace-name: aml-ws-mlops
   resource-group: rg-mlops
   job-name: amusing_jackal_9w9m3ls2b2
-  model-name: azureml_amusing_jackal_9w9m3ls2b2_output_mlflow_log_model_583397521:1
+  model-name: azureml_amusing_jackal_9w9m3ls2b2_output_mlflow_log_model_583397521
  
 permissions:
   id-token: write
