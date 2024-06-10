@@ -41,7 +41,7 @@ jobs:
     - name: Set up Azure Machine Learning
       run: |
         az extension add -n azure-cli-ml
-        az ml workspace configure -w ${{ env.workspace-name }} -g ${{ env.resource-group }} --subscription ${{env.sub-id}}
+        az ml workspace --name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
 
     - name: Upload dataset
       run: |
