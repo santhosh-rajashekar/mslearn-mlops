@@ -40,7 +40,7 @@ jobs:
 
     - name: Set up Azure Machine Learning
       run: |
-        az extension add -n azure-cli-ml
+        az extension add -n ml
 
     - name: Upload dataset
       run: |
