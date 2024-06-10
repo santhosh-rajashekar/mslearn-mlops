@@ -1,0 +1,5 @@
+$schema: http://azuremlsdk2.blob.core.windows.net/latest/data.schema.json
+name: attrition_data
+version: 1
+type: uri_file
+path: ./employee_attrition.csv

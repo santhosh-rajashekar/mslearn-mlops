@@ -1,0 +1,10 @@
+name: project_environment
+dependencies:
+  - python=3.8
+  - scikit-learn
+  - pandas
+  - numpy
+  - pip
+  - pip:
+    - azureml-sdk
+    - joblib

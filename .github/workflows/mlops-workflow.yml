@@ -1,0 +1,57 @@
+name: ML Ops Workflow
+
+on: [push]
+
+env:
+    workspace-name: aml-ws-mlops
+    resource-group: rg-mlops
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./ml/requirements.txt
+
+    - name: Configure Azure credentials
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Set up Azure Machine Learning
+      run: |
+        az extension add -n azure-cli-ml
+        az ml workspace configure -w your-workspace-name -g your-resource-group --subscription your-subscription-id
+
+    - name: Upload dataset
+      run: |
+        az ml data create -f data.yaml
+
+    - name: Submit training run
+      run: |
+        az ml job create --file train.yaml
+
+    # - name: Register the model
+    #   run: |
+    #     az ml job create --file register_model.yaml
+
+    # - name: Deploy the model
+    #   run: |
+    #     az ml job create --file deploy_model.yaml
+
+    # - name: Test the deployment
+    #   run: |
+    #     python test_deployment.py

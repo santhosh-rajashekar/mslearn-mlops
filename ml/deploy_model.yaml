@@ -1,0 +1,13 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: >
+  python deploy_model.py
+environment: azureml:project_environment:1
+inputs:
+  attrition_data:
+    data: azureml:attrition_data:1
+compute: azureml:cpu-cluster
+experiment_name: deploy_model_experiment
+output:
+  name: outputs
+  type: uri_folder
+  mode: Upload

@@ -1,0 +1,6 @@
+EmployeeNumber,Age,Department,DistanceFromHome,Education,Gender,JobRole,MaritalStatus,MonthlyIncome,NumCompaniesWorked,PercentSalaryHike,TotalWorkingYears,TrainingTimesLastYear,YearsAtCompany,YearsInCurrentRole,YearsSinceLastPromotion,YearsWithCurrManager,Attrition
+1,41,Sales,1,2,Male,Sales Executive,Single,5993,8,11,8,0,6,4,0,5,Yes
+2,49,Research & Development,8,1,Female,Research Scientist,Married,5130,1,23,10,3,10,7,1,7,No
+3,37,Research & Development,2,2,Male,Laboratory Technician,Single,2090,6,15,7,3,0,0,0,8,Yes
+4,33,Research & Development,3,4,Female,Research Scientist,Married,2909,1,11,8,3,8,7,3,0,8,No
+5,27,Research & Development,2,1,Male,Laboratory Technician,Married,3468,9,12,6,3,2,2,2,2,Yes
