@@ -1,0 +1,37 @@
+name: Deploy Model Manually #intrdouced for quick testing
+ 
+on:
+  pull_request_target:
+    types: [labeled]
+ 
+env:
+  workspace-name: aml-ws-mlops
+  resource-group: rg-mlops
+  job-name: amusing_jackal_9w9m3ls2b2
+  model-name: azureml_amusing_jackal_9w9m3ls2b2_output_mlflow_log_model_583397521
+ 
+permissions:
+  id-token: write
+  contents: read
+ 
+jobs:
+
+  deploy-model:
+    name: Deploy Model
+    if: github.event.label.name == 'deploy-model'
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run:  az ml online-deployment create -f src/deploy-endpoint.yml --all-traffic --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
