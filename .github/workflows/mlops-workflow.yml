@@ -5,6 +5,7 @@ on: [push]
 env:
     workspace-name: aml-ws-mlops
     resource-group: rg-mlops
+    sub-id: 20671c75-cecd-4a9d-9dfb-98defacfaec2
 
 jobs:
   build-and-deploy:
@@ -34,15 +35,15 @@ jobs:
     - name: Set up Azure Machine Learning
       run: |
         az extension add -n azure-cli-ml
-        az ml workspace configure -w your-workspace-name -g your-resource-group --subscription your-subscription-id
+        az ml workspace configure -w ${{ env.workspace-name }} -g ${{ env.resource-group }} --subscription ${{env.sub-id}}
 
     - name: Upload dataset
       run: |
-        az ml data create -f data.yaml
+        az ml data create -f ./ml/data.yaml
 
     - name: Submit training run
       run: |
-        az ml job create --file train.yaml
+        az ml job create --file ./ml/train.yaml
 
     # - name: Register the model
     #   run: |
