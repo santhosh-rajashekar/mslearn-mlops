@@ -41,15 +41,14 @@ jobs:
     - name: Set up Azure Machine Learning
       run: |
         az extension add -n azure-cli-ml
-        az ml workspace --name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
 
     - name: Upload dataset
       run: |
-        az ml data create -f ./ml/data.yaml
+        az ml data create -f ./ml/data.yaml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
 
     - name: Submit training run
       run: |
-        az ml job create --file ./ml/train.yaml
+        az ml job create --file ./ml/train.yaml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
 
     # - name: Register the model
     #   run: |
