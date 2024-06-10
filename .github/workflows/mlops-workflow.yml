@@ -7,6 +7,10 @@ env:
     resource-group: rg-mlops
     sub-id: 20671c75-cecd-4a9d-9dfb-98defacfaec2
 
+permissions:
+    id-token: write
+    contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
