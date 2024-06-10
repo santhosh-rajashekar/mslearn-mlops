@@ -42,9 +42,9 @@ jobs:
       run: |
         az extension add -n ml
 
-    - name: Upload dataset
-      run: |
-        az ml data create -f ./ml/data.yaml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
+    # - name: Upload dataset
+    #   run: |
+    #     az ml data create -f ./ml/data.yaml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
 
     - name: Submit training run
       run: |
